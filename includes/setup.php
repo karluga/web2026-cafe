@@ -41,6 +41,54 @@ try {
         created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
     )");
 
+    $pdo->exec("
+        CREATE TABLE IF NOT EXISTS favorites (
+            id INT AUTO_INCREMENT PRIMARY KEY,
+            user_id INT NOT NULL,
+            item_id INT NOT NULL,
+            created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+            UNIQUE KEY unique_fav (user_id, item_id),
+            FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+        )
+    ");
+
+    $pdo->exec("
+        CREATE TABLE IF NOT EXISTS reservations (
+            id INT AUTO_INCREMENT PRIMARY KEY,
+            user_id INT NOT NULL,
+            reservation_date DATE NOT NULL,
+            reservation_time TIME NOT NULL,
+            guests INT NOT NULL,
+            table_number VARCHAR(20) NULL,
+            special_request TEXT NULL,
+            status ENUM('pending', 'confirmed', 'cancelled') DEFAULT 'pending',
+            created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+            FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+        )
+    ");
+
+    $pdo->exec("
+        CREATE TABLE IF NOT EXISTS orders (
+            id INT AUTO_INCREMENT PRIMARY KEY,
+            user_id INT NOT NULL,
+            order_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+            total_amount DECIMAL(10,2) NOT NULL,
+            status ENUM('pending', 'confirmed', 'completed', 'cancelled') DEFAULT 'pending',
+            FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+        )
+    ");
+
+    $pdo->exec("
+        CREATE TABLE IF NOT EXISTS order_items (
+            id INT AUTO_INCREMENT PRIMARY KEY,
+            order_id INT NOT NULL,
+            menu_id INT NOT NULL,
+            quantity INT NOT NULL,
+            price DECIMAL(10,2) NOT NULL,
+            FOREIGN KEY (order_id) REFERENCES orders(id) ON DELETE CASCADE
+        )
+    ");
+
     echo "<h3 style='color:green'>Database tables created successfully!</h3>";
 } catch (PDOException $e) {
     echo "<h3 style='color:red'>Error: " . $e->getMessage() . "</h3>";
