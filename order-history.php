@@ -11,10 +11,10 @@ $user_id = $_SESSION['user_id'];
 // Fetch all orders with items
 $stmt = $pdo->prepare("
     SELECT o.*, 
-           GROUP_CONCAT(CONCAT(m.name, ' (x', oi.quantity, ')') SEPARATOR ', ') as items
+           GROUP_CONCAT(CONCAT(m.title, ' (x', oi.quantity, ')') SEPARATOR ', ') as items
     FROM orders o
     LEFT JOIN order_items oi ON o.id = oi.order_id
-    LEFT JOIN menu m ON oi.menu_id = m.id
+    LEFT JOIN services m ON oi.menu_id = m.id
     WHERE o.user_id = ?
     GROUP BY o.id
     ORDER BY o.order_date DESC
@@ -29,7 +29,7 @@ $orders = $stmt->fetchAll();
     <?php if (empty($orders)): ?>
         <div class="text-center py-5">
             <h4>No orders yet</h4>
-            <a href="menu.php" class="btn btn-primary mt-3">Order Now</a>
+            <a href="services.php" class="btn btn-primary mt-3">Order Now</a>
         </div>
     <?php else: ?>
         <div class="row">
@@ -68,5 +68,5 @@ $orders = $stmt->fetchAll();
         </div>
     <?php endif; ?>
 </div>
-    
-<?php include 'includes/footer.php'; ?>
+
+<?php require_once 'includes/footer.php'; ?>

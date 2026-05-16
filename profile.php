@@ -194,7 +194,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['change_password'])) {
                         <div class="card-body">
                             <h6>📅 Book a Table</h6>
                             <p class="text-muted small">Reserve your seat</p>
-                            <a href="reservation.php" class="btn btn-outline-primary btn-sm">Make Reservation</a>
+                            <a href="reservations.php" class="btn btn-outline-primary btn-sm">Make Reservation</a>
                         </div>
                     </div>
                 </div>
