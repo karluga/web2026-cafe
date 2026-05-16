@@ -1,0 +1,187 @@
+html {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: white;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+/* ===================== DARK MODE ===================== */
+body.dark-mode {
+    background-color: #121212;
+    color: #e0e0e0;
+}
+
+body.dark-mode .navbar,
+body.dark-mode #feet {
+    background-color: #1a1a1a !important;
+}
+
+body.dark-mode section,
+body.dark-mode .jumbotron,
+body.dark-mode .reviews,
+body.dark-mode .featured,
+body.dark-mode .card,
+body.dark-mode .table,
+body.dark-mode .alert {
+    background-color: #1e1e1e;
+    color: #e0e0e0;
+}
+
+body.dark-mode input.form-control,
+body.dark-mode textarea.form-control,
+body.dark-mode .form-control {
+    background-color: #2a2a2a;
+    color: #e0e0e0;
+    border-color: #555;
+}
+
+body.dark-mode .table thead th {
+    background-color: #2a2a2a;
+    color: #e0e0e0;
+}
+
+body.dark-mode .btn-primary {
+    background-color: #0d6efd;
+    border-color: #0d6efd;
+}
+
+/* ===================== BASIC STYLES ===================== */
+a:hover,
+a:focus {
+    text-decoration: none;
+}
+
+.navbar-brand {
+    padding-top: .3125rem;
+    padding-bottom: .3125rem;
+    line-height: 1.5;
+}
+
+.jumbotron {
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+        url("../images/kafejnica_bastions_visitvalmiera-5.jpg") center/cover;
+    color: white;
+    padding: 100px 20px;
+}
+
+.hero .hero-btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 10px;
+    background: #e67e22;
+    color: white;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.hero-btn:hover {
+    background: #cf711f;
+}
+
+section {
+    padding: 40px 20px;
+    text-align: center;
+}
+
+.features,
+.team-members,
+.service-items {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+}
+
+.features div,
+.service-item {
+    background: white;
+    padding: 20px;
+    flex: 1;
+}
+
+.team-members img {
+    width: 150px;
+    border-radius: 50%;
+}
+
+form {
+    max-width: 400px;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+input,
+textarea {
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+footer#feet {
+    background: #222;
+    color: white;
+    text-align: center;
+    padding: 20px 0;
+    margin-top: auto;
+}
+
+a {
+    color: #e67e22;
+}
+
+/* ===================== ADMIN STYLES ===================== */
+.table-responsive {
+    margin-top: 20px;
+}
+
+.table th,
+.table td {
+    vertical-align: middle;
+}
+
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+/* ===================== DARK MODE ADMIN ===================== */
+body.dark-mode .features div,
+body.dark-mode .service-item,
+body.dark-mode .review {
+    background: #1e1e1e;
+    color: #e0e0e0;
+    border: 1px solid #444;
+}
+
+body.dark-mode .rating-summary {
+    color: white !important;
+}
+
+/* ===================== RESPONSIVE ===================== */
+@media (max-width: 768px) {
+
+    .features,
+    .team-members,
+    .service-items {
+        flex-direction: column;
+    }
+
+    .jumbotron {
+        padding: 60px 20px;
+    }
+}
+
+/* Search bar */
+.search-input {
+    height: 50px;
+    border-radius: 30px;
+    padding-left: 35px;
+    border: none;
+}
