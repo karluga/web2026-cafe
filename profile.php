@@ -146,15 +146,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['change_password'])) {
                 <input type="hidden" name="change_password" value="1">
                 <div class="row">
                     <div class="col-md-4 mb-3">
-                        <label>Current Password</label>
+                        <label class="text-center">Current Password</label>
                         <input type="password" name="old_password" class="form-control" required>
                     </div>
                     <div class="col-md-4 mb-3">
-                        <label>New Password</label>
+                        <br>
+                        <label class="d-block text-center">New Password</label>
                         <input type="password" name="new_password" class="form-control" minlength="6" required>
                     </div>
                     <div class="col-md-4 mb-3">
-                        <label>Confirm Password</label>
+                        <label class="text-center">Confirm Password</label>
                         <input type="password" name="confirm_password" class="form-control" minlength="6" required>
                     </div>
                 </div>

@@ -24,7 +24,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             setcookie("last_visit", time(), time() + (86400 * 30), "/"); // 30 days
             setcookie("username", $user['username'], time() + (86400 * 30), "/");
 
-            header("Location: /cafe_website/admin/dashboard.php");
+            if($user['role'] == 1)
+            {
+                header("Location: /cafe_website/admin/dashboard.php");
+            }
+            else
+            {
+                header("Location: /cafe_website/index.php");
+            }
             exit;
         } else {
             $error = "Invalid username or password!";
@@ -56,7 +63,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <button type="submit" class="btn btn-primary w-100">Login</button>
             </form>
             <p class="text-center mt-3">Don't have an account? <a href="register.php">Register here</a></p>
-            <p class="text-centre mt-3"><a href="change_password.php">Forgot password?</a></p>
+            <p class="text-center mt-3"><a href="change_password.php">Forgot password?</a></p>
         </div>
     </div>
 </div>

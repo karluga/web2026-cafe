@@ -21,6 +21,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $stmt = $pdo->prepare("SELECT id FROM users WHERE username = ? OR email = ?");
             $stmt->execute([$username, $email]);
 
+            $stmt = $pdo->prepare("SELECT * FROM users WHERE username = ?");
+            $stmt->execute([$username]);
+            $user = $stmt->fetch();
+
             if ($stmt->rowCount() > 0) {
                 $error = "Username or email already exists!";
             } else {
@@ -37,7 +41,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 setcookie("last_visit", time(), time() + (86400 * 30), "/");
                 setcookie("username", $username, time() + (86400 * 30), "/");
 
-                header("Location: /cafe_website/admin/dashboard.php?registered=1");
+                if($user['role'] == 1)
+                {
+                    header("Location: /cafe_website/admin/dashboard.php?registered=1");
+                }
+                else
+                {
+                    header("Location: /cafe_website/index.php");
+                }
                 exit;
             }
 
