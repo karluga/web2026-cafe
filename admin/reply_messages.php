@@ -1,21 +1,17 @@
 <?php
-// Include the database connection and header
 include '../includes/db.php';
 include '../includes/header.php';
 
-// Check if the admin is logged in
 session_start();
 if (!isset($_SESSION['admin_logged_in'])) {
     header('Location: login.php');
     exit;
 }
 
-// Handle form submission for replying to a message
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['reply'])) {
     $message_id = $_POST['message_id'];
     $reply = $_POST['reply'];
 
-    // Update the database with the reply
     $stmt = $conn->prepare("UPDATE messages SET reply = ?, replied_at = NOW() WHERE id = ?");
     $stmt->bind_param('si', $reply, $message_id);
     if ($stmt->execute()) {
@@ -25,7 +21,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['reply'])) {
     }
 }
 
-// Fetch messages from the database
 $result = $conn->query("SELECT * FROM messages ORDER BY created_at DESC");
 ?>
 
@@ -68,6 +63,5 @@ $result = $conn->query("SELECT * FROM messages ORDER BY created_at DESC");
 </div>
 
 <?php
-// Include the footer
 include '../includes/footer.php';
 ?>
